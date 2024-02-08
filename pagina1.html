@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscador - página 1</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" id="textoLogo" class="brand-logo center">Logo</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="index.html" class="btn" onclick="changePage('Pagina Principal')">Pagina Principal</a></li>
+        <li><a href="pagina1.html" class="btn" onclick="changePage('Pagina 1')">Pagina 1</a></li>
+        <li><a href="pagina2.html" class="btn" onclick="changePage('Pagina 2')">Pagina 2</a></li>
+        <li><a href="pagina3.html" class="btn" onclick="changePage('Pagina 3')">Pagina 3</a></li>
+      </ul>
+      <form class="right">
+        <div class="input-field">
+          <input id="search" type="search" required>
+          <script>
+              let buscador = document.getElementById("search");
+        let textoLogo = document.getElementById("textoLogo");
+        buscador.addEventListener("keyup", function(){
+            let cont=0;
+            Array.from(document.getElementsByTagName("p")).forEach(elemen => {
+                // console.log("buscador: ", buscador.value)
+                console.log("elementos: ", elemen.childNodes[0])
+                const htmlOriginal = elemen.innerText;
+                if(elemen.innerText.includes(buscador.value) && buscador.value != '') {
+                    console.log("elementos2: ", elemen.childNodes[0]);
+                    console.log("original: ", htmlOriginal);
+
+                    htmlNuevo = htmlOriginal.replaceAll(buscador.value, '<span style="background-color: yellow;">'+buscador.value+'</span>')
+                    // console.log("html: ", htmlAnt)
+                    // document.getElementsByClassName("gray-text")[0].innerHTM.Lreplace(buscador.value, '<span style="background-color: yellow;">'+buscador.value+'</span>')
+                    elemen.innerHTML = htmlNuevo;
+                    cont = cont + 1;
+                }
+            })
+            textoLogo.text = "Se encontraron " + cont;
+        })
+          </script>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+
+  <div class="section white">
+    <div class="row container">
+      <h2 class="header">Bienvenido a la Página 1</h2>
+      <p class="grey-text text-darken-3 lighten-3">Aquí puedes encontrar información relevante.</p>
+    </div>
+  </div>
+
+  <div class="section blue-grey darken-2 white-text">
+    <div class="row container">
+      <h2 class="header">Contenido</h2>
+      <p class="grey-text text-lighten-3">Explora El contenido de la pagina</p>
+    </div>
+  </div>
+
+  <div class="section white">
+    <div class="row container">
+      <h2 class="header">Otra Sección</h2>
+      <p class="grey-text text-darken-3 lighten-3">Más información de la pagina</p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="js/script.js"></script>
+
+  <script>
+    function changePage(page) {
+      alert('Cambiando a ' + page);
+
+    }
+  </script>
+
+</body>
+</html>
